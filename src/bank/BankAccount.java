@@ -1,65 +1,50 @@
 package bank;
 
 public class BankAccount {
-    private static int balance=0;
+    private double accountBalance;
+    private String accountName;
+    private String accountNumber;
+    private String bankBranch;
+    private boolean isAccountActive;
 
-static void deposit(int amount){
-        if (amount<0){
-            System.out.println("You cannot deposit less than 0");
+    //    bank constructors
+    public BankAccount(String accountName, String accountNumber, String bankBranch, double amount) {
+
+        this.accountName = accountName;
+        this.accountNumber = accountNumber;
+        this.bankBranch = bankBranch;
+        this.accountBalance = amount;
+        this.isAccountActive=true;
+    }
+
+    //    bank methods
+    public double getToDisplayAccountBalance(){
+        return accountBalance;
+    }
+
+    public void setAccountBalance(double accountBalance){
+        this.accountBalance=accountBalance;
+    }
+
+    public void closeAccount(){
+        isAccountActive=false;
+    }
+
+    public boolean isAccountActive() {
+        return isAccountActive;
+    }
+
+    public void withdraw(double amount)throws Exception{
+        if (amount >this.accountBalance){
+            throw new Exception("Amount is greater than the available balance.");
         }
-        else{
-            balance+=amount;
-            String transaction=String.format("You deposited %s",amount );
-            System.out.println(transaction);
+        this.accountBalance-=amount;
+    }
+
+    public void deposit(double amount){
+        if(amount > 0){
+            this.accountBalance+=amount;
         }
     }
 
- static void withdraw(int amount){
-    if (amount>balance){
-        String withdrawalMessage=String.format("You cannot withdraw %d",amount);
-        System.out.println(withdrawalMessage);
-    }
-    else{
-        balance-=amount;
-        String withdrawalTransaction=String.format("You have withdrawn %d",amount);
-        System.out.println(withdrawalTransaction);
-    }
-    }
-
-    static void showBalance(){
-    System.out.println("Hello your balance is "+ balance);
-    }
-
-  static void borrow(int amount){
-    if (amount>0){
-        String borrowMessage=String.format("You can borrow %d",amount);
-        System.out.println(borrowMessage);
-    }
-    else{
-        System.out.println("You cannot borrow less than zero");
-    }
-    }
-
-  static void repayLoan(int amount){
-    if (amount>0){
-        String repayMessage=String.format("You have an outstanding debt of %d",amount);
-        System.out.println(repayMessage);
-    }
-    else{
-        System.out.println("You have cleared your debt!");
-    }
-    }
-
-    public static void main(String[] args) {
-     deposit(99);
-     withdraw(8);
-     withdraw(899);
-     deposit(99999);
-     withdraw(777);
-     showBalance();
-     borrow(7880);
-     showBalance();
-     repayLoan(777);
-     borrow(0);
-    }
 }
