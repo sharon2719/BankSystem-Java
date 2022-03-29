@@ -14,37 +14,50 @@ public class BankAccount {
         this.accountNumber = accountNumber;
         this.bankBranch = bankBranch;
         this.accountBalance = amount;
-        this.isAccountActive=true;
+        this.isAccountActive = true;
     }
 
     //    bank methods
-    public double getToDisplayAccountBalance(){
+    public double getToDisplayAccountBalance() {
         return accountBalance;
     }
 
-    public void setAccountBalance(double accountBalance){
-        this.accountBalance=accountBalance;
+    public void setAccountBalance(double accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
-    public void closeAccount(){
-        isAccountActive=false;
+    public void closeAccount() {
+        isAccountActive = false;
     }
 
     public boolean isAccountActive() {
         return isAccountActive;
     }
 
-    public void withdraw(double amount)throws Exception{
-        if (amount >this.accountBalance){
-            throw new Exception("Amount is greater than the available balance.");
+    public void withdraw(double amount) throws NotSufficientFundException {
+        if (amount > this.accountBalance) {
+            throw new NotSufficientFundException("Amount is greater than the available balance.");
         }
-        this.accountBalance-=amount;
+        this.accountBalance -= amount;
     }
 
-    public void deposit(double amount){
-        if(amount > 0){
-            this.accountBalance+=amount;
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.accountBalance += amount;
         }
     }
 
+    public double transferTo(BankAccount bankAccount, double amount) {
+        bankAccount.accountBalance = bankAccount.accountBalance + amount;
+        accountBalance = accountBalance - amount;
+
+//        if(amount<=this.accountBalance){
+//            withdraw(amount);
+//            bankAccount.deposit(amount);
+//            throw new Exception("Transfer successful");
+//        }
+
+        return amount;
+    }
 }
+
