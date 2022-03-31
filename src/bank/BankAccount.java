@@ -17,6 +17,10 @@ public class BankAccount {
         this.isAccountActive = true;
     }
 
+    public BankAccount() {
+
+    }
+
     //    bank methods
     public double getToDisplayAccountBalance() {
         return accountBalance;
@@ -50,12 +54,6 @@ public class BankAccount {
     public double transferTo(BankAccount bankAccount, double amount) {
         bankAccount.accountBalance = bankAccount.accountBalance + amount;
         accountBalance = accountBalance - amount;
-
-//        if(amount<=this.accountBalance){
-//            withdraw(amount);
-//            bankAccount.deposit(amount);
-//            throw new Exception("Transfer successful");
-//        }
 
         return amount;
     }
