@@ -3,8 +3,10 @@ package bank;
 import java.util.Scanner;
 
 public class MainBank extends BankAccount {
+
     public static void main(String[] args) {
         Scanner scanner= new Scanner(System.in);
+
         int userChoice;
         boolean quit=false;
         double accountBalance =0;
@@ -26,7 +28,7 @@ public class MainBank extends BankAccount {
                     }
                     else{
                         accountBalance+=amount;
-                        System.out.println("$" + amount +" has been deposited");
+                        System.out.println("KES" + amount +" has been deposited");
                     }
                     break;
                 case 2:
@@ -37,11 +39,11 @@ public class MainBank extends BankAccount {
                     }
                     else {
                         accountBalance -= amount;
-                        System.out.println("$" + amount + " has been withdrawn");
+                        System.out.println("KES" + amount + " has been withdrawn");
                     }
                     break;
                 case 3:
-                    System.out.println("Your balance: $" + accountBalance);
+                    System.out.println("Your balance: KES" + accountBalance);
                     break;
                 case 0 :
                     quit= true;

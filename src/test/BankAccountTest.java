@@ -45,9 +45,10 @@ class BankAccountTest {
 
         @Test
         public void transferToTest() {
-            BankAccount bankAccount = new BankAccount("Jane Doe","0789675","Embakasi",50.00);
-            bankAccount.deposit(100);
-            assertEquals(50,bankAccount.transferTo(bankAccount,50));
+            BankAccount janeAccount = new BankAccount("Jane Doe","0789675","Embakasi",50.00);
+            bankAccount.transferTo(janeAccount, 100);
+            assertEquals(0,bankAccount.getToDisplayAccountBalance());
+            assertEquals(150,janeAccount.getToDisplayAccountBalance());
         }
 }
 

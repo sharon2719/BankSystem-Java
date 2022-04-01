@@ -1,6 +1,6 @@
 package bank;
 
-public class BankAccount {
+public class BankAccount implements Balance {
     private double accountBalance;
     private String accountName;
     private String accountNumber;
@@ -22,6 +22,7 @@ public class BankAccount {
     }
 
     //    bank methods
+    @Override
     public double getToDisplayAccountBalance() {
         return accountBalance;
     }
