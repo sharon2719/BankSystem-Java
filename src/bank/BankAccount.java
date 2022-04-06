@@ -1,10 +1,10 @@
 package bank;
 
 public class BankAccount implements Balance {
-    private double accountBalance;
-    private String accountName;
-    private String accountNumber;
-    private String bankBranch;
+    double accountBalance;
+    String accountName;
+    String accountNumber;
+    String bankBranch;
     private boolean isAccountActive;
 
     //    bank constructors
@@ -39,11 +39,12 @@ public class BankAccount implements Balance {
         return isAccountActive;
     }
 
-    public void withdraw(double amount) throws NotSufficientFundException {
+    public Object withdraw(double amount) throws NotSufficientFundException {
         if (amount > this.accountBalance) {
             throw new NotSufficientFundException("Amount is greater than the available balance.");
         }
         this.accountBalance -= amount;
+        return null;
     }
 
     public void deposit(double amount) {
@@ -53,8 +54,8 @@ public class BankAccount implements Balance {
     }
 
     public double transferTo(BankAccount bankAccount, double amount) {
-        bankAccount.accountBalance = bankAccount.accountBalance + amount;
-        accountBalance = accountBalance - amount;
+       bankAccount.deposit(amount);
+       this.withdraw(amount);
 
         return amount;
     }
